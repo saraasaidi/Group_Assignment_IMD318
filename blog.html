@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blog | MJ Petshop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_b9f97904b1d32c9313971cea283743919'
+    });
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    color: #333;
+    animation: pageFade 0.9s ease-in;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== NAVBAR ===== */
+.main-header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f91;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: #ff6f91;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff6f91;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    background: #ffd6e8;
+    padding: 60px 40px;
+    text-align: center;
+    animation: headerReveal 1s ease;
+}
+
+@keyframes headerReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+}
+
+/* ===== BLOG ===== */
+.blog {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.blog-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-card:hover {
+    transform: translateY(-12px) scale(1.03);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover img {
+    transform: scale(1.1);
+}
+
+.blog-content {
+    padding: 20px;
+}
+
+.blog-content span {
+    font-size: 13px;
+    color: #999;
+}
+
+.blog-content h3 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.blog-content p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #ff6f91;
+    font-weight: 500;
+}
+
+/* ===== TIPS BOX ===== */
+.tips-box {
+    display: none;
+    margin-top: 10px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: tipsExpand 0.35s ease;
+}
+
+@keyframes tipsExpand {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tips-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.tips-box li {
+    margin-bottom: 5px;
+}
+
+.read-more {
+    transition: transform 0.25s ease;
+}
+
+.read-more:hover {
+    transform: translateX(6px);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ffd6e8;
+    padding: 50px 40px 20px;
+    font-size: 14px;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.social-icons a {
+    font-size: 22px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.payment-icons span {
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: #ff6f91;
+}
+
+.footer hr {
+    margin: 40px 0 20px;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-bottom a:hover {
+    color: #ff7a00;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 25px;
+    height: 25px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.15);
+}
+
+.payment-icons img {
+    height: 28px;
+    margin-right: 15px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="main-header">
+    <div class="logo">
+        <img src="icon/logo.png" alt="MJ Petshop Logo" class="logo-img"> MJ Petshop
+    </div>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <div class="user-nav">
+        <a href="cart.html" class="cart-link"> 🛒 Cart 
+            <span class="cart-count">0</span></a>
+    </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <h1>Pet Care Blog</h1>
+    <p>Tips, guides & updates from MJ Petshop</p>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog">
+    <div class="blog-grid">
+
+        <!-- Blog Card 1 -->
+        <div class="blog-card">
+            <img src="images/dog.jpg">
+            <div class="blog-content">
+                <span>Pet Care • Jan 2026</span>
+                <h3>How to Take Care of Your Dog</h3> 
+                <p>Learn basic daily care routines, food tips, and health advice for your dog.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="dog">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 2 -->
+        <div class="blog-card">
+            <img src="images/food.jpg">
+            <div class="blog-content">
+                <span>Cat Care • Jan 2026</span>
+                <h3>Best Food for Indoor Cats</h3> 
+                <p>Discover the best nutrition choices to keep your indoor cat healthy.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="cat">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 3 -->
+        <div class="blog-card">
+            <img src="images/access.jpg">
+            <div class="blog-content">
+                <span>Tips • Jan 2026</span>
+                <h3>Choosing the Right Pet Accessories</h3> 
+                <p>Tips on selecting toys, beds, and accessories suitable for your pets.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="accessories">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 4 -->
+        <div class="blog-card">
+            <img src="images/fish.jpg">
+            <div class="blog-content">
+                <span>Fish Care • Jan 2026</span>
+                <h3>Maintaining a Healthy Aquarium</h3> 
+                <p>Learn how to keep your fish tank clean and your aquatic pets healthy.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="fish">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 5 -->
+        <div class="blog-card">
+            <img src="images/duck.jpg">
+            <div class="blog-content">
+                <span>Bird Care • Jan 2026</span>
+                <h3>How to Care for Pet Birds</h3> 
+                <p>Tips on feeding, cage setup, and keeping your pet birds happy and healthy.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="bird">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 6 -->
+        <div class="blog-card">
+            <img src="images/hamster.jpg">
+            <div class="blog-content">
+                <span>Small Pets • Jan 2026</span>
+                <h3>Hamster Habitat & Care Guide</h3> 
+                <p>Everything you need to know about feeding, housing, and playing with your hamster.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="hamster">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 7 -->
+        <div class="blog-card">
+            <img src="images/health.jpg">
+            <div class="blog-content">
+                <span>Health • Jan 2026</span>
+                <h3>Preventing Common Pet Illnesses</h3> 
+                <p>Learn how to spot signs of sickness early and keep your pets in good health.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="health">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 8 -->
+        <div class="blog-card">
+            <img src="images/lizard.jpg">
+            <div class="blog-content">
+                <span>Exotic Pets • Jan 2026</span>
+                <h3>Caring for Exotic Pets at Home</h3> 
+                <p>Guidance on taking care of reptiles, amphibians, and other unusual pets safely.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="exotic">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+        <!-- Blog Card 9 -->
+        <div class="blog-card">
+            <img src="images/training.jpg">
+            <div class="blog-content">
+                <span>Training • Jan 2026</span>
+                <h3>Simple Training Tips for All Pets</h3> 
+                <p>Effective techniques to train your pets, from dogs and cats to birds and hamsters.</p>
+                <a href="javascript:void(0);" class="read-more" data-key="training">Read More →</a>
+                <div class="tips-box"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        
+        <!-- Social Media -->
+        <div class="footer-col">
+            <h4>Our Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/Mjpetshopmachang/" target="_blank">
+                    <img src="icon/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@mjpetshop?_r=1&_t=ZS-92mGjpanhv2" target="_blank">
+                    <img src="icon/tiktok.png" alt="TikTok">
+                </a>
+                <a href="https://wa.me/01155565095" target="_blank">
+                    <img src="icon/whatsapp.png" alt="WhatsApp">
+                </a>
+            </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="footer-col">
+            <h4>We Accept</h4>
+            <div class="payment-icons">
+                <img src="icon/visa.png" alt="Visa">
+                <img src="icon/mastercard.png" alt="Mastercard">
+                <img src="icon/fpx.png" alt="FPX">
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Track Your Parcel</a>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+        <p>© 2026 MJ Petshop | Machang, Kelantan</p>
+        <p>
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Exchange Policy</a>
+            <p> For Educational Purpose </p>
+            <p id="datetime"></p>
+            <p>Total Visits: <span id="visit-count"></span></p>
+        </p>
+    </div>
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+document.querySelector('.cart-count').textContent = cart.length;
+
+const tipsData = {
+    dog: [" 🐾 Feed on a Schedule – Serve meals at the same time daily to keep digestion and energy levels stable",
+          " 🛁 Groom Regularly – Brush fur, trim nails, and clean ears to maintain hygiene",
+          " 🏃 Exercise Daily – Take your dog for walks or play fetch to stay healthy and happy",
+          " 🩺 Regular Health Check-ups – Visit the vet for vaccinations and health monitoring",
+          " ❤️ Give Attention & Training – Spend quality time and teach basic commands for good behavior"],
+    cat: [" 🥗 Balanced Diet: Choose complete and balanced food specifically for indoor cats",
+          "⚖️ Portion Control: Prevent overeating to avoid weight gain",
+          " 🥩 High-Quality Protein: Supports daily energy and lean muscle",
+          " 💧 Hydration: Always provide fresh, clean water",
+          " 🌿 Fiber Support: Include some fiber to aid digestion and maintain gut health"],
+    accessories: ["📏 Size & Fit: Pick accessories that suit your pet’s size",
+                  "🛏️ Comfort: Prioritize comfy beds and resting areas ",
+                  "✅ Safety: Avoid sharp edges or small parts",
+                  " 💪 Durability: Choose strong, long-lasting materials",
+                  " 🔄 Hygiene: Easy-to-clean and washable items"],
+    fish: [" 🌊 Clean Tank Regularly – Remove waste and change water weekly",
+           " 🐠 Appropriate Filtration – Maintain water quality for fish health",
+           " 🍽️ Balanced Diet – Feed species-appropriate food",
+           " 🌡️ Monitor Temperature – Keep tank temperature stable",
+           " 💡 Proper Lighting – Mimic natural day/night cycles"],
+    bird: [" 🥗 Nutritious Diet – Mix seeds, fruits, and veggies",
+           " 🏠 Spacious Cage – Provide room to fly and exercise",
+           " 🧹 Clean Environment – Regularly wash cages and toys",
+           " 🗣️ Social Interaction – Talk or play to prevent loneliness",
+           " 🩺 Vet Check-ups – Annual health examinations"],
+    hamster: [" 🏠 Comfortable Cage – Provide bedding and hideouts",
+              " 🍎 Healthy Food – Mix seeds, grains, and fresh veggies",
+              " 🛏️ Exercise Wheel – Encourage daily physical activity",
+              " 🧹 Clean Cage Weekly – Avoid odor and infections",
+              " 🐹 Handle Gently – Socialize gradually"],
+    health: [" 🩺 Regular Vet Visits – Prevent diseases early",
+             " 💧 Proper Hydration – Always provide clean water",
+             " 🍽️ Balanced Diet – Ensure correct nutrition",
+             " 🏃 Exercise – Keep pets active for fitness",
+             " ❤️ Love & Attention – Reduce stress and improve behavior"],
+    exotic: [" 🦎 Correct Habitat – Mimic natural environment",
+             " 🌡️ Temperature & Humidity – Maintain proper levels",
+             " 🍽️ Specialized Diet – Research food requirements",
+             " 🧹 Clean Habitat Regularly – Avoid bacteria build-up",
+             " 🩺 Health Monitoring – Watch for abnormal behavior"],
+    training: [" 🐾 Consistency – Train regularly at the same time",
+               " 🏆 Positive Reinforcement – Use treats and praise",
+               " ⏱️ Short Sessions – Avoid overtraining",
+               " 💡 Patience – Progress gradually",
+               " ❤️ Bonding – Strengthen your relationship"]
+};
+
+document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.blog-card');
+        const tipsBox = card.querySelector('.tips-box');
+        const key = this.getAttribute('data-key');
+
+        if(tipsBox.style.display === 'none' || tipsBox.style.display === ''){
+            tipsBox.innerHTML = "<ul>" + tipsData[key].map(tip => `<li>${tip}</li>`).join('') + "</ul>";
+            tipsBox.style.display = 'block';
+            this.textContent = 'Show Less ↑';
+        } else {
+            tipsBox.style.display = 'none';
+            tipsBox.innerHTML = '';
+            this.textContent = 'Read More →';
+        }
+    });
+});
+
+const blogCards = document.querySelectorAll('.blog-card');
+
+const blogObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+        if(entry.isIntersecting){
+            setTimeout(() => {
+                entry.target.classList.add('show');
+            }, index * 120);
+        }
+    });
+}, { threshold: 0.15 });
+
+blogCards.forEach(card => blogObserver.observe(card));
+
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('en-MY', options);
+    const time = now.toLocaleTimeString('en-MY');
+
+    document.getElementById('datetime').textContent =
+        `🕒 ${date} | ${time}`;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+/* ===== VISIT COUNTER ===== */
+let visits = localStorage.getItem('siteVisits');
+
+if (!visits) {
+    visits = 1;
+} else {
+    visits = parseInt(visits) + 1;
+}
+
+localStorage.setItem('siteVisits', visits);
+document.getElementById('visit-count').textContent = visits;
+
+</script>
+</body>
+</html>
+

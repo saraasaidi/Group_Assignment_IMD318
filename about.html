@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Us | MJ Petshop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_b9f97904b1d32c9313971cea283743919'
+    });
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    color: #333;
+    animation: pageFade 1s ease-in;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== NAVBAR ===== */
+.main-header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f91;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.logo-img {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: #ff6f91;
+}
+
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff6f91;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    background: #ffd6e8;
+    padding: 70px 40px;
+    text-align: center;
+    animation: slideDown 1.1s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px 40px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: center;
+}
+
+.about img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: slideLeft 1.1s ease forwards;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: slideLeft 1.1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* ===== IMAGE SLIDER ===== */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: fadeZoom 1.2s ease forwards;
+    animation-delay: 0.4s;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 20px;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.slider-btn.prev {
+    left: 15px;
+}
+
+.slider-btn.next {
+    right: 15px;
+}
+
+.slider-btn:hover {
+    background: #ff6f91;
+    color: #fff;
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* ===== MISSION / VISION ===== */
+.mission-vision {
+    background: #fff;
+    padding: 70px 40px;
+}
+
+.mv-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.mv-card {
+    background: #ffd6e8;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+}
+
+.mv-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mv-card h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.mv-card p {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ===== WHY CHOOSE US ===== */
+.why-us {
+    padding: 70px 40px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.why-us h2 {
+    font-size: 34px;
+    margin-bottom: 40px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.why-card {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 18px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.why-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.why-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.why-card h4 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.why-card p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ===== OPERATION HOURS CARD ===== */
+.operation-card {
+    background: #fff;
+    padding: 30px;
+    margin-top: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    animation: fadeZoom 1.2s ease forwards;
+}
+
+.operation-card h3 {
+    font-size: 26px;
+    margin-bottom: 18px;
+    color: #ff6f91;
+}
+
+/* ===== DIV TABLE ===== */
+.div-table {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.div-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #fff;
+}
+
+.div-row.header {
+    background: #ffd6e8;
+    font-weight: 600;
+}
+
+.div-row:not(.header) {
+    border-top: 1px solid #eee;
+}
+
+.div-cell {
+    padding: 14px 18px;
+    font-size: 15px;
+}
+
+.op-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ffd6e8;
+    padding: 50px 40px 20px;
+    font-size: 14px;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.social-icons a {
+    font-size: 22px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.payment-icons span {
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: #ff6f91;
+}
+
+.footer hr {
+    margin: 40px 0 20px;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-bottom a:hover {
+    color: #ff7a00;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;   /* space between icons */
+}
+
+.social-icons img {
+    width: 25px;
+    height: 25px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.15);
+}
+
+.payment-icons img {
+    height: 28px;
+    margin-right: 15px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="main-header">
+    <div class="logo">
+        <img src="icon/logo.png" alt="MJ Petshop Logo" class="logo-img"> MJ Petshop
+    </div>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count">0</span></a>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <h1>About MJ Petshop</h1>
+    <p>Your trusted pet care partner in Machang, Kelantan</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+    <div class="about-grid">
+        <div>
+            <h2>About Us</h2>
+            <p>
+                Established in May 2021, MJ Petshop was founded with a mission to provide high-quality pet supplies to the community of Machang, Kelantan. We are a dedicated team of pet enthusiasts—led by Mad Jeni and Ashirah Ahmad—who believe that every pet deserves the best nutrition and care. We have become a trusted local hub for cat owners and pet lovers alike. 
+                We offer a wide range of pet food, accessories, grooming services, and expert advice to
+                ensure your pets live healthy, happy, and comfortable lives.
+
+    <!-- OPERATION HOURS CARD -->
+    <div class="operation-card">
+        <h3>🕘 Operation Hours</h3>
+
+            <div class="div-table">
+                <div class="div-row header">
+                    <div class="div-cell">Day</div>
+                    <div class="div-cell">Opening Hours</div>
+                </div>
+
+                <div class="div-row">
+                    <div class="div-cell">Monday – Saturday</div>
+                    <div class="div-cell">9:00 AM – 9:00 PM</div>
+                </div>
+
+                <div class="div-row">
+                    <div class="div-cell">Sunday</div>
+                    <div class="div-cell">9:00 AM – 8:00 PM</div>
+                </div>
+            </div>
+
+            <p class="op-note">📍 Simpang 3, near Machang Fire Station</p>
+        </div>
+
+            </p>
+        </div>
+
+    <div class="slider">
+        <img src="images/1.jpg" class="slide active">
+        <img src="images/2.jpg" class="slide">
+        <img src="images/3.jpg" class="slide">
+        <img src="images/4.jpg" class="slide">
+        <img src="images/5.jpg" class="slide">
+        <img src="images/6.jpg" class="slide">
+        <img src="images/7.jpg" class="slide">
+        <img src="images/8.jpg" class="slide">
+
+        <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
+        <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
+    </div>
+
+    </div>
+</section>
+
+<!-- Google maps -->
+<section class= "maps-section" style="padding-top:0;">
+    <h2 style="text-align:center; margin-bottom:30px;">🗺️ Google Maps</h2>
+    
+            <div style="max-width:900px; margin:auto; background:#fff; border-radius:20px; padding:25px; margin-bottom: 80px; box-shadow:0 6px 15px rgba(0,0,0,0.08);">
+
+        <p style="font-size:18px; margin-bottom:10px;">
+            ⭐⭐⭐⭐⭐ <strong>4.8 / 5</strong> based on Google Reviews
+        </p>
+
+        <div style="margin-top:20px; border-radius:15px; overflow:hidden;">
+            <iframe
+                src="https://www.google.com/maps?q=MJ+Petshop+Machang&output=embed"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mission-vision">
+    <div class="mv-grid">
+        <div class="mv-card">
+            <h3>Our Mission</h3>
+            <p>
+                To provide high-quality pet products and services while educating pet owners on responsible
+                pet care and well-being.
+            </p>
+        </div>
+
+        <div class="mv-card">
+            <h3>Our Vision</h3>
+            <p>
+                To become the most trusted and customer-friendly pet shop in Kelantan,
+                serving both pets and owners with care and passion.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+    <h2>Why Choose MJ Petshop?</h2>
+
+    <div class="why-grid">
+        <div class="why-card">
+            <h4>🐾 Quality Products</h4>
+            <p>Only trusted brands and safe products for your beloved pets.</p>
+        </div>
+
+        <div class="why-card">
+            <h4>💖 Pet-Loving Team</h4>
+            <p>Our staff are passionate and experienced in pet care.</p>
+        </div>
+
+        <div class="why-card">
+            <h4>🏪 Local & Trusted</h4>
+            <p>Proudly serving Machang and nearby communities.</p>
+        </div>
+
+        <div class="why-card">
+            <h4>📦 Easy Shopping</h4>
+            <p>Convenient online browsing with in-store support.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        
+        <!-- Social Media -->
+        <div class="footer-col">
+            <h4>Our Social Media</h4>
+             <div class="social-icons">
+                <a href="https://www.facebook.com/Mjpetshopmachang/" target="_blank">
+                    <img src="icon/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@mjpetshop?_r=1&_t=ZS-92mGjpanhv2" target="_blank">
+                    <img src="icon/tiktok.png" alt="TikTok">
+                </a>
+                <a href="https://wa.me/01155565095" target="_blank">
+            <img src="icon/whatsapp.png" alt="WhatsApp">
+                </a>
+    </div>
+</div>
+
+        <!-- Payment -->
+        <div class="footer-col">
+        <h4>We Accept</h4>
+            <div class="payment-icons">
+                <img src="icon/visa.png" alt="Visa">
+                <img src="icon/mastercard.png" alt="Mastercard">
+                <img src="icon/fpx.png" alt="fpx">
+         </div>
+    </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Track Your Parcel</a>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+        <p>© 2026 MJ Petshop | Machang, Kelantan</p>
+        <p>
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Exchange Policy</a>
+            <p> For Educational Purpose </p>
+            <p id="datetime"></p>
+            <p>Total Visits: <span id="visit-count"></span></p>
+        </p>
+    </div>
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+document.querySelector('.cart-count').textContent = cart.length;
+
+let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+}
+
+function changeSlide(direction) {
+    currentSlide += direction;
+
+    if (currentSlide < 0) currentSlide = slides.length - 1;
+    if (currentSlide >= slides.length) currentSlide = 0;
+
+    showSlide(currentSlide);
+}
+
+// Auto slide every 4 seconds
+setInterval(() => {
+    changeSlide(1);
+}, 4000);
+
+const mvCards = document.querySelectorAll('.mv-card');
+
+const mvObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.3 });
+
+mvCards.forEach(card => mvObserver.observe(card));
+
+const whyCards = document.querySelectorAll('.why-card');
+
+const whyObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+        if(entry.isIntersecting){
+            setTimeout(() => {
+                entry.target.classList.add('show');
+            }, index * 150);
+        }
+    });
+}, { threshold: 0.2 });
+
+whyCards.forEach(card => whyObserver.observe(card));
+
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('en-MY', options);
+    const time = now.toLocaleTimeString('en-MY');
+
+    document.getElementById('datetime').textContent =
+        `🕒 ${date} | ${time}`;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+/* ===== VISIT COUNTER ===== */
+let visits = localStorage.getItem('siteVisits');
+
+if (!visits) {
+    visits = 1;
+} else {
+    visits = parseInt(visits) + 1;
+}
+
+localStorage.setItem('siteVisits', visits);
+document.getElementById('visit-count').textContent = visits;
+
+</script>
+
+</body>
+</html>
