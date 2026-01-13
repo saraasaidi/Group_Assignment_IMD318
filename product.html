@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Products | MJ Petshop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    color: #333;
+    animation: fadePage 0.9s ease-in;
+}
+
+@keyframes fadePage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== NAVBAR ===== */
+.main-header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f91;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: #ff6f91;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff6f91;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    background: #ffd6e8;
+    padding: 60px 40px;
+    text-align: center;
+    animation: slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+}
+
+/* ===== FILTER ===== */
+.filter {
+    padding: 30px 40px;
+    text-align: center;
+}
+
+.filter button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 30px;
+    background: #ff6f91;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    animation: popIn 0.6s ease forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.filter button:hover,
+.filter button.active {
+    background: #e85d84;
+    transform: scale(1.08);
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+    padding: 40px;
+    background: #fff;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.product {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product h4 {
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #2a9d8f;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #ff6f91;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product button:hover {
+    background: #e85d84;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ffd6e8;
+    padding: 50px 40px 20px;
+    font-size: 14px;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.social-icons a {
+    font-size: 22px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.payment-icons span {
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: #ff6f91;
+}
+
+.footer hr {
+    margin: 40px 0 20px;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-bottom a:hover {
+    color: #ff7a00;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;   /* space between icons */
+}
+
+.social-icons img {
+    width: 25px;
+    height: 25px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.15);
+}
+
+.payment-icons img {
+    height: 28px;
+    margin-right: 15px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 280px;
+  margin: 120px auto;
+  border-radius: 10px;
+  animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal select, 
+.modal button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #2a9d8f;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  animation: toastUp 0.4s ease;
+}
+
+@keyframes toastUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="main-header">
+    <div class="logo">MJ Petshop</div>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <div class="user-nav">
+        <a href="cart.html" class="cart-link">🛒 Cart
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <h1>Our Products</h1>
+    <p>Quality pet food & accessories for all pets</p>
+</section>
+
+<!-- FILTER -->
+<div class="filter">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="dog">Dog</button>
+    <button data-filter="cat">Cat</button>
+    <button data-filter="fish">Fish</button>
+    <button data-filter="bird">Bird</button>
+    <button data-filter="hamster">Hamster</button>
+    <button data-filter="supplement">Supplement</button>
+    <button data-filter="bedding">Bedding</button>
+     <button data-filter="cage">Cage & Toys</button>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+    <h2>Recommended For You</h2>
+    <div class="product-grid">
+
+        <div class="product" data-category="dog" data-flavor="Chicken,Lamb,Salmon,Beef">
+            <img src="images/iqdogfood.webp" alt="iq dog food">
+            <h4>IQ Dog Kible 13.5KG/15KG</h4>
+            <p class="price">RM85.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cat" data-flavor="Chicken & Tuna,Kitten Mackerel,Kitten Tuna,Mackerel,Ocean Fish,Salmon & Mackerel,Seafood Platter,Tuna">
+            <img src="images/prodietcat.webp" alt="Prodiet Pouch">
+            <h4>ProDiet Pouch Wet Cat Food 85g</h4>
+            <p class="price">RM2.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cat" data-flavor="Chicken & Tuna,Fresh Tuna,Mackerel,Ocean Fish,Salmon & Mackerel,Seafood Platter">
+            <img src="images/prodietcanned2.jpg" alt="Prodiet Canned">
+            <h4>ProDiet Canned Cat Food 400g</h4>
+            <p class="price">RM4.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="dog" data-flavor="Salmon Coat Beauty,Small Breed Adult,Small Breed Puppy,Baby Puppy,Lamb">
+            <img src="images/kitchendog.webp" alt="Dog Food">
+            <h4>Kitchen Flavor Dog Food 1.5KG</h4>
+            <p class="price">RM37.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bird" data-flavor="Original">
+            <img src="images/mbh.jpg" alt="Bird Seeds Mix">
+            <h4>Makanan Burung MBH</h4>
+            <p class="price">RM2.80</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bird" data-flavor="standard">
+            <img src="images/ypablend.jpg" alt="Cat Toy Ball">
+            <h4>YPA Fruitblend Dedak Buah 200gm</h4>
+            <p class="price">RM9.50</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="hamster" data-flavor="1KG">
+            <img src="images/bengy1kg.jpg" alt="hamster pellets">
+            <h4>BENGY Hamster Mixed Food 1KG</h4>
+            <p class="price">RM18.50</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="fish" data-flavor="500g">
+            <img src="images/takara500g.jpg" alt="fish pellets">
+            <h4>Takara Sakana Mix Fish Food Pellets 500g</h4>
+            <p class="price">RM8.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="dog" data-flavor="Mini Indoor Adult 3KG,Poodle Adult 3KG,Pomeranian Adult 3KG,Mini Coat Care 3KG,Shih Tzu Adult 3KG,Mini Puppy 4KG,Mini Dermacomfort 3KG,Mini Adult 4KG,Maxi Adult 4KG,Bulldog Adult 3KG,Schnauzer Adult 3KG,Mini Light Weight 3KG,X-Small Adult 3KG,Medium Adult 4KG,Medium Puppy 4KG">
+            <img src="images/rcdog.webp" alt="Dog Food">
+            <h4>Royal Canin Dog Dry Food</h4>
+            <p class="price">RM110.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cat" data-flavor="Hair & Skin 10KG,British Adult 10KG,Kitten 10KG,Fit 10KG,Indoor 10KG,Urinary 10KG,Sterilised 10KG,Mainecoon Adult 10KG,Persian Kitten 10KG">
+            <img src="images/rccat.webp" alt="Cat Food">
+            <h4>Royal Canin Cat Dry Food 10KG</h4>
+            <p class="price">RM270.99</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="fish" data-flavor="Standard">
+            <img src="images/tornado.webp" alt="fish pellets">
+            <h4>Tornado Aqua Betta Fish Food</h4>
+            <p class="price">RM4.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="hamster" data-flavor="2.27KG">
+            <img src="images/rmclassic.jpg" alt="Hamster Food">
+            <h4>R&M Classic Cereal Hamster Food 2.27KG</h4>
+            <p class="price">RM32.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bird" data-flavor="Dedak Buah,Dedak Cabai,Dedak Halus Anak Burung">
+            <img src="images/sbsdedak.webp" alt="dedak">
+            <h4>SBS Premium Dedak Burung</h4>
+            <p class="price">RM5.50</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bedding" data-flavor="Wood Shaving 1KG,Corncob 1KG,Paper 1KG,Daro Wood Shaving 1KG">
+            <img src="images/scbed.webp" alt="bedding">
+            <h4>Smart Choice Eco Natural Pet Bedding 1KG</h4>
+            <p class="price">RM17.49</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="supplement" data-flavor="Booster Chew,Lecithin Extract,Coat Thickening">
+            <img src="images/rcbooster.png" alt="booster">
+            <h4>Rich Choice Holistic Supplement for Cats & Dogs 250g</h4>
+            <p class="price">RM53.89</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Standard">
+            <img src="images/cat4Lcage.webp" alt="Cat Cage">
+            <h4>Cat Cage 4 Layer Easy Assemble with Wheels</h4>
+            <p class="price">RM116.78</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bedding" data-flavor="Delicate Lily Breeze,Snowy Pine Jasmine,Desert Rose,Oolong Peach,Yoshino Cherry">
+            <img src="images/deodorbedding.webp" alt="Pet Bedding">
+            <h4>Small Pet Bedding Litter Deodorant</h4>
+            <p class="price">RM19.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="supplement" data-flavor="Standard">
+            <img src="images/bexton.webp" alt="vitamin anjing">
+            <h4>Bexton Skinhealth Capsule 60's</h4>
+            <p class="price">RM39.98</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Standard">
+            <img src="images/birdcage.webp" alt="bird cage">
+            <h4>Bird Cage House Stand</h4>
+            <p class="price">RM48.18</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Random Color">
+            <img src="images/cattoys.webp " alt="Cat Toys">
+            <h4>CouCou Cat Toys Stick</h4>
+            <p class="price">RM1.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="bedding" data-flavor="Blue 10L,White 10L,Colorful 10L">
+            <img src="images/carefresh.webp" alt="pet bedding">
+            <h4>Carefresh Small Pet Bedding 10L</h4>
+            <p class="price">RM58.19</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="supplement" data-flavor="Cat,Dog">
+            <img src="images/midalac.webp" alt="Pet milk">
+            <h4>Midalac Goat's Milk for Cats & Kittens/Dog & Puppies 200g</h4>
+            <p class="price">RM15.19</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Standard">
+            <img src="images/dogcage.webp" alt="dog cage">
+            <h4>Large Dog House Bold Metal</h4>
+            <p class="price">RM282.50</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Orange,Pink,Blackgray,Orangewhite,Bluewhite,Blue,Brown">
+            <img src="images/carrier.webp" alt="carrier cage">
+            <h4>Pet Carrier Cage</h4>
+            <p class="price">RM26.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="1 set">
+            <img src="images/toysset.png" alt="Cat Toys">
+            <h4>32pcs Cat Toys Set</h4>
+            <p class="price">RM64.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="dog" data-flavor="Chicken,Lamb,Beef">
+            <img src="images/prodog.jpg" alt="wet food">
+            <h4>ProBalance Dog Canned Wet Food 700g</h4>
+            <p class="price">RM10.90</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cat" data-flavor="Chicken 1.2KG,Tuna 1.2KG,Ocean Fish 1.2KG,Mackerel 1.2KG,Jr Ocean Fish 1.1KG">
+            <img src="images/whiskas.webp" alt="whiskas cat">
+            <h4>Whiskas Cat Dry Food 1.1KG/1.2KG</h4>
+            <p class="price">RM16.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="supplement" data-flavor="Standard">
+            <img src="images/nvhairball.png" alt="hairball">
+            <h4>Nanovet Hairball Remedy Gel 125g</h4>
+            <p class="price">RM25.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="supplement" data-flavor="Standard">
+            <img src="images/nvbooster.jpg" alt="booster gel">
+            <h4>Nanovet Booster Gel for Cat & Dog 125g</h4>
+            <p class="price">RM25.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+          <div class="product" data-category="supplement" data-flavor="Multivitamin,Probiotic,Skin + Coat,Eye + Stain,Flea + Tick,Hip + Joint">
+            <img src="images/nvchew.webp" alt="chewable">
+            <h4>Nanovet Chewable Series for Cat and Dog 120 Chew</h4>
+            <p class="price">RM99.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product" data-category="cage" data-flavor="Blue,Pink,Green,Black,Grey,Yellow,Red">
+            <img src="images/catbag.webp" alt="bag">
+            <h4>Pet Backpack Carrier Transparent</h4>
+            <p class="price">RM26.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        
+        <!-- Social Media -->
+        <div class="footer-col">
+            <h4>Our Social Media</h4>
+             <div class="social-icons">
+                <a href="https://www.facebook.com/Mjpetshopmachang/" target="_blank">
+                    <img src="icon/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@mjpetshop?_r=1&_t=ZS-92mGjpanhv2" target="_blank">
+                    <img src="icon/tiktok.png" alt="TikTok">
+                </a>
+                <a href="https://wa.me/01155565095" target="_blank">
+            <img src="icon/whatsapp.png" alt="WhatsApp">
+                </a>
+    </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2 id="modalName"></h2>
+    <p id="modalPrice"></p>
+
+    <label>Flavor / Type</label>
+    <select id="modalFlavor">
+      <option value="">Select option</option>
+    </select>
+
+    <button onclick="addToCart()">Add to cart</button>
+  </div>
+</div>
+        <!-- Payment -->
+        <div class="footer-col">
+        <h4>We Accept</h4>
+            <div class="payment-icons">
+                <img src="icon/visa.png" alt="Visa">
+                <img src="icon/mastercard.png" alt="Mastercard">
+                <img src="icon/fpx.png" alt="fpx">
+         </div>
+    </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Track Your Parcel</a>
+        </div>
+
+<!-- TOAST -->
+<div id="toast" class="toast">Added to cart</div>
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+        <p>© 2026 MJ Petshop | Machang, Kelantan</p>
+        <p>
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Exchange Policy</a>
+            <p> For Educational Purpose </p>
+            <p id="datetime"></p>
+            <p>Total Visits: <span id="visit-count"></span></p>
+        </p>
+    </div>
+</footer>
+
+<script>
+const filterButtons = document.querySelectorAll('.filter button');
+const products = document.querySelectorAll('.product');
+
+filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        products.forEach(p => {
+            if (filter === 'all' || p.getAttribute('data-category') === filter) {
+                p.style.display = 'block';
+            } else {
+                p.style.display = 'none';
+            }
+        });
+    });
+});
+
+</script>
+<script>
+const modal = document.getElementById("productModal");
+const modalName = document.getElementById("modalName");
+const modalPrice = document.getElementById("modalPrice");
+const modalFlavor = document.getElementById("modalFlavor");
+const cartCount = document.querySelector(".cart-count");
+
+let selectedProduct = {};
+
+/* === CART COUNT === */
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cartCount.textContent = cart.length;
+}
+updateCartCount();
+
+/* === OPEN MODAL (ONLY BUTTON CLICK) === */
+document.querySelectorAll(".product button").forEach(button => {
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const product = button.closest(".product");
+
+    const name = product.querySelector("h4").innerText;
+    const priceText = product.querySelector(".price").innerText;
+    const price = parseFloat(priceText.replace("RM",""));
+    const img = product.querySelector("img").src;
+    const flavorData = product.dataset.flavor || "Standard";
+
+    selectedProduct = { name, price, img };
+
+    modalName.textContent = name;
+    modalPrice.textContent = `RM${price.toFixed(2)}`;
+
+    modalFlavor.innerHTML = `<option value="">Select option</option>`;
+    flavorData.split(",").forEach(f => {
+      modalFlavor.innerHTML += `<option value="${f.trim()}">${f.trim()}</option>`;
+    });
+
+    modal.style.display = "block";
+  });
+});
+
+/* === CLOSE MODAL === */
+function closeModal() {
+  modal.style.display = "none";
+}
+
+/* === ADD TO CART === */
+function addToCart() {
+  const flavor = modalFlavor.value;
+  if (!flavor) {
+    alert("Please select flavor / type");
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({
+    name: selectedProduct.name,
+    price: selectedProduct.price,
+    img: selectedProduct.img,
+    flavor: flavor,
+    quantity: 1
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  closeModal();
+  showToast("✔ Added to cart");
+}
+
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('en-MY', options);
+    const time = now.toLocaleTimeString('en-MY');
+
+    document.getElementById('datetime').textContent =
+        `🕒 ${date} | ${time}`;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+/* ===== VISIT COUNTER ===== */
+let visits = localStorage.getItem('siteVisits');
+
+if (!visits) {
+    visits = 1;
+} else {
+    visits = parseInt(visits) + 1;
+}
+
+localStorage.setItem('siteVisits', visits);
+document.getElementById('visit-count').textContent = visits;
+</script>
+
+</body>
+</html>

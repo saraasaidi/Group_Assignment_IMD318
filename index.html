@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MJ Petshop | Machang Kelantan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+.main-header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: #ffb3cc;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #ff6f91;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    color: #333;
+    animation: fadeInPage 1s ease-in;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== NAVBAR ===== */
+header {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f91;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #ff6f91;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    background: #ffd6e8;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    max-width: 500px;
+    animation: slideInLeft 1.2s ease forwards;
+}
+
+.hero-text h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-text button {
+    padding: 12px 25px;
+    background: #ff7a00;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.hero img {
+    max-width: 350px;
+    animation: floatImage 3s ease-in-out infinite;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes floatImage {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+    padding: 60px 40px;
+    background: #fff;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.product {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+    min-width: 240px;
+    flex-shrink: 0;
+}
+
+.product.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product h4 {
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #2a9d8f;
+    font-weight: bold;
+}
+
+.product-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.product-track {
+    display: flex;
+    gap: 25px;
+    animation: autoSlide 20s linear infinite;
+}
+
+.product-slider:hover .product-track {
+    animation-play-state: paused;
+}
+
+@keyframes autoSlide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ===== PROMO ===== */
+.promo {
+    background: #7A8450;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+    margin: 60px 40px;
+    border-radius: 20px;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.shop-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ff6f91;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.shop-btn:hover {
+    background: #e85d84;
+}
+
+/* ===== FEATURED ===== */
+.featured {
+    padding: 60px 40px;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature-box {
+    padding: 40px;
+    border-radius: 20px;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.feature-1 { background: #a3c2c2; }
+.feature-2 { background: #e1e1d0; }
+.feature-3 { background: #F9CDD5; }
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #ffd6e8;
+    padding: 50px 40px 20px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+.footer.show-footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.social-icons a {
+    font-size: 22px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.payment-icons span {
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background: #fff;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: #ff6f91;
+}
+
+.footer hr {
+    margin: 40px 0 20px;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-bottom a:hover {
+    color: #ff7a00;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;   
+}
+
+.social-icons img {
+    width: 25px;
+    height: 25px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.15);
+}
+
+.payment-icons img {
+    height: 28px;
+    margin-right: 15px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="main-header">
+    <div class="logo">MJ Petshop</div>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <div class="user-nav">
+        <a href="cart.html" class="cart-link"> 🛒 Cart
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Quality Pet Supplies</h1>
+        <p>Providing healthy pets, food & accessories in Machang, Kelantan.</p>
+        <a href="product.html" class="shop-btn">Shop Now</a>
+    </div>
+    <img src="images/testing.jpg" alt="Pet">
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+    <h2>Recommended For You</h2>
+    <div class="product-slider">
+    <div class="product-track">
+
+        <div class="product">
+            <img src="images/prodietcat.webp" alt="Prodiet Pouch">
+            <h4>ProDiet Pouch Wet Cat Food 85g</h4>
+            <p class="price">RM2.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/bengy1kg.jpg" alt="hamster pellets">
+            <h4>BENGY Hamster Mixed Food 1KG</h4>
+            <p class="price">RM18.50</p>
+        </div>
+
+        <div class="product">
+            <img src="images/tornado.webp" alt="fish pellets">
+            <h4>Tornado Aqua Betta Fish Food</h4>
+            <p class="price">RM4.90</p>
+        </div>
+
+        <div class="product">
+            <img src="images/cattoys.webp " alt="Cat Toys">
+            <h4>CouCou Cat Toys Stick</h4>
+            <p class="price">RM1.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/whiskas.webp" alt="Cat Toys">
+            <h4>Whiskas Cat Dry Food 1.1KG/1.2KG</h4>
+            <p class="price">RM16.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/carrier.webp" alt="Cat Toys">
+            <h4>Pet Carrier Cage</h4>
+            <p class="price">RM26.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/birdcage.webp" alt="Cat Toys">
+            <h4>Bird Cage House Stand</h4>
+            <p class="price">RM48.18</p>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<!-- PROMO -->
+<div class="promo">
+    <h2>Up to 15% Discount on Selected Items</h2>
+    <p>Visit MJ Petshop Machang today!</p>
+</div>
+
+<!-- FEATURED -->
+<section class="featured">
+    <div class="featured-grid">
+        <div class="feature-box feature-1">
+            <h3>Pet Beds & Comfort</h3>
+            <p>Soft and comfortable bedding for your pets.</p>
+        </div>
+        <div class="feature-box feature-2">
+            <h3>Cat Toys</h3>
+            <p>Durable toys for active cats.</p>
+        </div>
+        <div class="feature-box feature-3">
+            <h3>Healthy Dry Food</h3>
+            <p>Nutritious meals for all pets.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        
+        <!-- Social Media -->
+        <div class="footer-col">
+            <h4>Our Social Media</h4>
+             <div class="social-icons">
+                <a href="https://www.facebook.com/Mjpetshopmachang/" target="_blank">
+                    <img src="icon/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@mjpetshop?_r=1&_t=ZS-92mGjpanhv2" target="_blank">
+                    <img src="icon/tiktok.png" alt="TikTok">
+                </a>
+                <a href="https://wa.me/01155565095" target="_blank">
+            <img src="icon/whatsapp.png" alt="WhatsApp">
+                </a>
+    </div>
+</div>
+
+        <!-- Payment -->
+        <div class="footer-col">
+        <h4>We Accept</h4>
+            <div class="payment-icons">
+                <img src="icon/visa.png" alt="Visa">
+                <img src="icon/mastercard.png" alt="Mastercard">
+                <img src="icon/fpx.png" alt="fpx">
+         </div>
+    </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Track Your Parcel</a>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+        <p>© 2026 MJ Petshop | Machang, Kelantan</p>
+        <p>
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Exchange Policy</a>
+            <p> For Educational Purpose </p>
+            <p id="datetime"></p>
+            <p>Total Visits: <span id="visit-count"></span></p>
+        </p>
+    </div>
+</footer>
+
+<script>
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Update cart count in navbar
+    const cartCount = document.querySelector('.cart-count');
+    if(cartCount){
+        cartCount.textContent = cart.length;
+    }
+
+const products = document.querySelectorAll('.product');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+products.forEach(product => observer.observe(product));
+
+const footer = document.querySelector('.footer');
+
+const footerObserver = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+        footer.classList.add('show-footer');
+    }
+}, { threshold: 0.2 });
+
+footerObserver.observe(footer);
+
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('en-MY', options);
+    const time = now.toLocaleTimeString('en-MY');
+
+    document.getElementById('datetime').textContent =
+        `🕒 ${date} | ${time}`;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+/* ===== VISIT COUNTER ===== */
+let visits = localStorage.getItem('siteVisits');
+
+if (!visits) {
+    visits = 1;
+} else {
+    visits = parseInt(visits) + 1;
+}
+
+localStorage.setItem('siteVisits', visits);
+document.getElementById('visit-count').textContent = visits;
+</script>
+
+</body>
+</html>
